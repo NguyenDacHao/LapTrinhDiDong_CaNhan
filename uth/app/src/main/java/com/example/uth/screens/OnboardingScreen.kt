@@ -148,7 +148,7 @@ fun OnboardingScreen(navController: NavController) {
                 onClick = {
                     if (pageIndex < pages.lastIndex) pageIndex++
                     else {
-                        navController.navigate(Screen.Home.route) {
+                        navController.navigate(Screen.Login.route) {
                             popUpTo(Screen.Onboarding.route) { inclusive = true }
                         }
                     }
