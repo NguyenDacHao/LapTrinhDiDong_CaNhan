@@ -11,6 +11,7 @@ import com.example.uth.screens.OnboardingScreen
 import com.example.uth.screens.ProfileScreen
 import com.example.uth.screens.SplashScreen
 import com.example.uth.model.UserViewModel
+import com.example.uth.screens.TaskDetailScreen
 
 @Composable
 fun NavGraph(navController: NavHostController) {
@@ -30,9 +31,16 @@ fun NavGraph(navController: NavHostController) {
         composable(Screen.Login.route) {
             LoginScreen(navController, userViewModel)
         }
-        composable(Screen.Home.route) {
-            HomeScreen()
+        composable("home") {
+            HomeScreen(onTaskClick = { id ->
+                navController.navigate("taskDetail/$id")
+            })
         }
+        composable("taskDetail/{id}") { backStack ->
+            val id = backStack.arguments?.getString("id")?.toIntOrNull() ?: 0
+            TaskDetailScreen(taskId = id, onBack = { navController.popBackStack() })
+        }
+
         composable(Screen.Profile.route) {
             ProfileScreen(navController, userViewModel)
         }

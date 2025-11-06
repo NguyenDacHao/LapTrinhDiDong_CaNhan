@@ -148,6 +148,29 @@ fun LoginScreen(navController: NavController, userViewModel: UserViewModel = vie
                 )
             }
         }
+        Button(
+            onClick = {
+                Toast.makeText(context, "Bỏ qua đăng nhập", Toast.LENGTH_SHORT).show()
+                navController.navigate("home") { // hoặc "profile", tuỳ route của bạn
+                    popUpTo("login") { inclusive = true }
+                }
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(45.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Transparent,
+                contentColor = Color(0xFF007BFF)
+            ),
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp)
+        ) {
+            Text(
+                text = "BỎ QUA",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.SemiBold
+            )
+        }
+
 
         // Phần dưới cùng: Copyright text
         Text(
